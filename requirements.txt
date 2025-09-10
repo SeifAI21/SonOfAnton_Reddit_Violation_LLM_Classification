@@ -8,4 +8,6 @@ trl==0.10.1
 pandas
 scikit-learn
 torch
-wandbwhat
+wandb
+
+
