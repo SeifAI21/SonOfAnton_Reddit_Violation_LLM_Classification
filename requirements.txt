@@ -1,0 +1,13 @@
+optimum
+auto-gptq
+bitsandbytes
+peft
+transformers==4.44.2
+accelerate==0.34.2
+trl==0.10.1
+pandas
+scikit-learn
+torch
+wandb
+
+
