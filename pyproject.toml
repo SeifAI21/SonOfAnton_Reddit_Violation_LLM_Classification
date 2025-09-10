@@ -1,0 +1,53 @@
+# pyproject.toml
+[tool.poetry]
+name = "Son-Of-Anton"
+version = "0.1.0"
+description = "Project for classifying rule violations in Reddit comments using Qwen models."
+authors = ["MohamedElBassat <Mohamed77bassat@gmail.com>"]
+readme = "README.md"
+packages = [{include = "app"}, {include = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+
+# Core ML/NLP libraries (deepspeed, bitsandbytes, torch removed for manual install)
+trl = "0.9.4"
+optimum = "1.27.0"
+# auto-gptq might also need manual installation, but let's try with Poetry first
+auto-gptq = "0.7.1" 
+logits-processor-zoo = "0.2.1"
+vllm = "0.10.0"
+triton = {version = "3.3.1", optional = true} # Keep triton here, poetry might install it, if not we'll do it manually.
+peft = "0.11.1"
+accelerate = "0.31.0"
+datasets = "^3.0.0"
+
+# Other inferred dependencies
+pandas = "^2.2.2"
+numpy = "^1.26.4"
+scipy = "^1.13.1"
+tqdm = "^4.66.4"
+transformers = "4.53.2"
+cleantext = "^1.1.0"
+sentence-transformers = "^2.7.0"
+
+# FastAPI and related for your `app` directory
+fastapi = "^0.115.0"
+uvicorn = {extras = ["standard"], version = "^0.30.1"}
+pydantic = "^2.7.4"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.extras]
+gpu = ["triton"]
+
+[tool.poetry.group.dev.dependencies]
+# Linters and formatters
+black = "^24.4.2"
+isort = "^5.13.2"
+flake8 = "^7.0.0"
+pre-commit = "^3.7.1"
+pytest = "^8.2.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
