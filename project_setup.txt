@@ -1,0 +1,59 @@
+your_repo_name/
+├── .dockerignore                 # Specifies files/directories to ignore when building Docker image
+├── .env.example                  # Example environment variables (do NOT commit .env itself)
+├── .flake8                       # Configuration for flake8 linter
+├── .gitignore                    # Standard Git ignore rules
+├── .pre-commit-config.yaml       # Configuration for pre-commit hooks
+├── Dockerfile                    # Docker build instructions for the application
+├── docker-compose.yml            # For local multi-service development (e.g., app + database)
+├── Makefile                      # Automates common development and deployment tasks
+├── pyproject.toml                # Project configuration, can be used by poetry/pip
+├── requirements.txt              # Python dependency list
+├── README.md                     # Project overview and instructions
+│
+├── app/                          # Main application code (FastAPI)
+│   ├── __init__.py               # Makes 'app' a Python package
+│   ├── main.py                   # FastAPI application entry point
+│   ├── api/                      # API routers and endpoints
+│   │   ├── __init__.py
+│   │   └── endpoints/
+│   │       ├── __init__.py
+│   │       └── predict.py        # Prediction endpoint
+│   ├── core/                     # Core application configurations and settings
+│   │   ├── __init__.py
+│   │   └── config.py
+│   ├── schemas/                  # Pydantic models for request/response validation
+│   │   ├── __init__.py
+│   │   └── prediction.py
+│   └── services/                 # Business logic, model loading, inference execution
+│       ├── __init__.py
+│       └── prediction_service.py # Handles all model inference logic
+│
+├── src/                          # Model training, evaluation, and helper utilities
+│   ├── constants.py              # Global constants for model paths, prompts, etc.
+│   ├── utils.py                  # Data processing, prompt building for training/evaluation
+│   ├── train.py                  # Script for fine-tuning Qwen 2.5 0.5b
+│   ├── inference.py              # Standalone inference script for Qwen 2.5 0.5b
+│   ├── infer_qwen.py             # Standalone inference script for Qwen 2.5 14b
+│   ├── semantic.py               # Semantic search script using Qwen3 Embedding
+│   └── logits_processor_zoo/     # Custom vLLM logits processor
+│       ├── __init__.py           # Makes 'logits_processor_zoo' a Python package
+│       └── vllm.py               # MultipleChoiceLogitsProcessor implementation
+│
+├── scripts/                      # General utility scripts (e.g., data preprocessing, model conversion)
+│   └── setup_env.sh              # Example script for environment setup
+│
+├── config/                       # Non-app specific configuration files
+│   └── accelerate_config.yaml    # Configuration for Accelerate/DeepSpeed
+│
+├── notebooks/                    # Jupyter notebooks for experimentation and documentation
+│   └── test-on-testdataset-qwenemdding-llama-lr.ipynb
+│
+├── tests/                        # Unit and integration tests
+│   ├── __init__.py
+│   ├── app/
+│   │   ├── __init__.py
+│   │   └── test_api.py           # Tests for FastAPI endpoints
+│   └── src/
+│       ├── __init__.py
+│       └── test_models.py        # Tests for model-related utilities/scripts
